@@ -9,7 +9,7 @@ public class AdditionApplication {
     public static void main(String[] args) {
       AdditionApplication app = new AdditionApplication();
       // app is now the gateway.entry_point
-      GatewayServer server = new GatewayServer(app);
+      GatewayServer server = new GatewayServer(app, 24335);
       server.start();
     }
 }
