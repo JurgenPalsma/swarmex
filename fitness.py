@@ -1,6 +1,8 @@
 class Fitness:
-
-    ''' Default fitness constructor '''
+    """ 
+        Struct which has all fitness value variables that DC java strategy returns.
+        TODO: define all params
+    """
     def __init__(
                 self,
                 value: float = 0, 
@@ -30,8 +32,14 @@ from abc import ABCMeta, abstractmethod
 from individual import Individual
 
 class AFitnessFunction:
+    """
+    Encapsulates a function we want to optimize
+    """
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def fitness(self, individual: Individual):
+    def fitness(self, individual: Individual) -> Fitness:
+        """
+        Fitness function that returns a Fitness object
+        """
         pass

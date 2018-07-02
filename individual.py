@@ -1,7 +1,8 @@
 class Individual:
-
     """ 
-        Candidate solution for the optimization problem
+        Candidate solution for the optimization problem.
+
+        TODO: Implement multiple thresholds?
     """
     def __init__(self,
                 quantity: int, # quantity for trading
