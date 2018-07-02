@@ -27,10 +27,11 @@ class Fitness:
 
 
 from abc import ABCMeta, abstractmethod
+from individual import Individual
 
 class AFitnessFunction:
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def fitness(self, individual):
+    def fitness(self, individual: Individual):
         pass

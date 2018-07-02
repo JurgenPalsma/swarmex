@@ -1,6 +1,7 @@
 from optimizer import AOptimizer
 from particle import Particle
 from fitness import AFitnessFunction, Fitness
+from individual import Individual
 
 class PSO(AOptimizer):
 
@@ -31,7 +32,23 @@ class PSO(AOptimizer):
         """
         print("Optimizing")
         print("Calling fitness function with sample individual")
-        individual = [134.0, 0.3434593504962303, 0.8807313175318929, 0.0, 0.9790021314573502, 0.296501, 0.398711, 0.639533, 0.833413, 0.700392]
+        
+        individual = Individual(quantity = 134.0,
+                                b_start = 0.3434593504962303, 
+                                b_end = 0.8807313175318929, 
+                                q_short =  0.0, 
+                                b_price = 0.9790021314573502,
+                                threshold_number = 5, 
+                                threshold_weights = [ 0.296501, 0.398711, 0.639533, 0.833413, 0.700392])
+        """
+        individual = Individual(quantity = 1.0,
+        b_start = 2.0, 
+        b_end = 3.0, 
+        q_short =  4.0, 
+        b_price = 5.0,
+        threshold_number = 5, 
+        threshold_weights = [ 6.0, 7.0, 8.0, 9.0, 10.0])
+        """
         fitval = ff.fitness(individual)
         print("Returned MDD : %f" % (fitval))
         pass
