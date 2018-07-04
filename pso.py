@@ -34,40 +34,50 @@ class PSO(AOptimizer):
         self.vel_conv_threshold = vel_conv_threshold,
         self.neighbourhood = neighbourhood
 
-        self.__populate()
 
 
     def optimize(self, ff: AFitnessFunction) -> Fitness:
         """
         Takes an AFitnessFunction abstract fitness function ff and returns an optimum
-        individual = Individual(quantity = 134.0,
-                                b_start = 0.3434593504962303, 
-                                b_end = 0.8807313175318929, 
-                                q_short =  0.0, 
-                                b_price = 0.9790021314573502,
-                                threshold_number = 5, 
-                                threshold_weights = [0.296501, 0.398711, 0.639533, 0.833413, 0.700392])
-
-        fitval = ff.fitness(individual)
-        print("Returned fitness: ", fitval)
         """
+        # Initialize swarm
+        self.__populate(ff)
+        self.ff = ff
+        self.conv = 0
+
+        #Loop
+        while (not self.__converged()):
+            for p in self.swarm:
+                p.update_velocity(self.__find_best_neighbour(p))
         
         pass
 
-    def __populate(self):
-        """
-        TODO
-        """
-        pass
+    def __populate(self, ff: AFitnessFunction):
+        self.swarm = [  Particle(ff,
+                        constraints={'quantity': {'min': 0, 'max': 100},
+                        'b_start': {'min': 0.0, 'max': 1.0},
+                        'b_end': {'min': 0.0, 'max': 1.0},
+                        'b_price': {'min': 0.0, 'max': 1.0},
+                        'threshold_weights': {'min': 0.0, 'max': 1.0},
+                        'q_short': {'min': 0, 'max': 100}})
+                        for i in range(self.swarm_size)]
 
-    def __converge(self):
+    def __converged(self):
         """
         TODO
         """
-        pass
+        self.conv += 1
+        return self.conv > 3
 
-    def __find_neighbours(self):
+    def __find_best_neighbour(self, p: Particle):
         """
-        TODO
+        For now, just returns global neighbourhood
+        TODO 
         """
-        pass
+        bestp = self.swarm[0]
+        for p in self.swarm:
+            bestf = self.ff.fitness(Individual(bestp.n_thresholds, bestp.p))
+            currentf = self.ff.fitness(Individual(p.n_thresholds, p.p))
+            if (currentf.mdd > bestf.mdd):
+                bestp = p
+        return bestp
