@@ -27,6 +27,9 @@ class Fitness:
         self.no_of_transactions = no_of_transactions
         self.no_of_short_selling_transactions = no_of_short_selling_transactions
 
+    def __repr__(self):
+        return "<Fitness func class with values: profit:%f, v:%f, mdd:%f, return:%f>" % (self.realised_profit, self.value, self.mdd, self.ret)
+
 
 from abc import ABCMeta, abstractmethod
 from individual import Individual

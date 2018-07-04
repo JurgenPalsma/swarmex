@@ -1,4 +1,4 @@
-from py4j.java_gateway import JavaGateway, GatewayParameters
+from py4j.java_gateway import JavaGateway, GatewayParameters, get_field
 from individual import Individual
 from fitness import Fitness
 
@@ -28,7 +28,7 @@ class fGateway(pjGateWay):
         Executes the DC-GA fitness function and returns a python-converted fitness struct
         """        
         j_indiv = self.__convert_individual_p_to_j(individual)
-        return  self.way.fitnessGateway(j_indiv)
+        return self.__convert_fitness_j_to_p(self.way.fitnessGateway(j_indiv))
         
     def __convert_individual_p_to_j(self, individual: Individual):
         p_len = 5 + len(individual.threshold_weights)
@@ -44,10 +44,21 @@ class fGateway(pjGateWay):
             t_indiv[i + 5] = individual.threshold_weights[i]
         return t_indiv
 
-    def __convert_fitness_j_to_p(self, fitness):
+    def __convert_fitness_j_to_p(self, f):
         # TODO
-        return fitness
-
+        return Fitness(
+            value = get_field(f, "value"),
+            u_sell = get_field(f, "uSell"),
+            u_buy = get_field(f, "uBuy"),
+            noop = get_field(f, "noop"),
+            realised_profit = get_field(f, "realisedProfit"),
+            mdd = get_field(f, "MDD"),
+            ret = get_field(f, "Return"),
+            wealth = get_field(f, "wealth"),
+            no_of_transactions = get_field(f, "noOfTransactions"),
+            no_of_short_selling_transactions = get_field(f, "noOfShortSellingTransactions")
+        )
+		
 #gateway = fGateway(27135)
 #individual = [134.0, 0.3434593504962303, 0.8807313175318929, 0.0, 0.9790021314573502, 0.296501, 0.398711, 0.639533, 0.833413, 0.700392]
 #print(gateway.fitness(individual))
