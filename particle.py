@@ -25,13 +25,16 @@ class Particle:
                 'b_price': {'min': float, 'max': float},
                 'threshold_weights': {'min': float, 'max': float},
                 'q_short': {'min': int, 'max': int}},
+                v_max: float,
                 n_thresholds: int = 5,
                 w_inertia: float = 0.333,
                 w_memory: float = 0.5,
-                w_neigh: float = 0.5,):
+                w_neigh: float = 0.5):
         
         # Assign fitness function
         self.ff = function
+
+        self.constraints = constraints
 
         # Map coordinates
         coords = pd.Series([])
@@ -45,6 +48,8 @@ class Particle:
         for i in range(0, n_thresholds):
             coords[5 + i] =  self.__generateCoord(constraints['threshold_weights'])
             params[5 + i] = "t" + str(i+1)
+            constraints["t" + str(i+1)] = {'min': constraints['threshold_weights']['min'],
+                                            'max': constraints['threshold_weights']['max']}
 
         # Map velocity at a random tiny value
         self.p = pd.DataFrame({ 'Parameter': params,
@@ -54,7 +59,7 @@ class Particle:
         self.p.set_index('Parameter', inplace=True)
 
         # Assign fitness
-        self.current_fit = self.ff.fitness(Individual(n_thresholds, self.p))
+        self.current_fit = self.ff.fitness(Individual.factory("Coordinate", n_thresholds, self.p))
         
         # Up to know you're your historical best
         self.p['HBest'] = self.p['Coordinate']
@@ -65,8 +70,10 @@ class Particle:
         self.w_neigh = w_neigh
 
         self.n_thresholds = n_thresholds
+        self.v_max = v_max
         self.iteration = 0
 
+        
     def __generateCoord(self, constraints: {'min': float, 'max': float}):
         return random.uniform(constraints['min'], constraints['max'])
 
@@ -77,8 +84,12 @@ class Particle:
         self.velocity = (w_inertia * v) + (w_mem * (histpos - pos) + (wg * (neihg - pos)))
         self.pos = self.pos + self.vel
         """
-        self.p['Neighbour'] = neighbour.p['Coordinate']
+        self.p['Neighbour'] = neighbour.p['Coordinate']            
+
         def updatev(row):    
+            
+            
+            
             return (
                     (self.w_inertia * row['Velocity']) +
                     (self.w_memory * (row['HBest'] - row['Coordinate'])) + 
@@ -86,20 +97,59 @@ class Particle:
 
         def move(row):
             return row['Coordinate'] + row['Velocity']
-        print(self.p)
-        #print(self.p['Velocity'][1])
-        #print(self.p['Coordinate'][1])
+
         self.p['Velocity'] = self.p.apply(updatev, axis=1)
+        self.__clampV()
         self.p['Coordinate'] = self.p.apply(move, axis=1)
+        self.__clampPos()
+        # Update fitness
+        self.current_fit = self.ff.fitness(Individual.factory("Coordinate", self.n_thresholds, self.p))
 
-        # TODO: replace your historical best if you've defeated it
 
-        #self.p['V' + str(self.iteration)] = self.p.apply(updatev, axis=1)
-        #self.p['P' + str(self.iteration)] = self.p.apply(updatep, axis=1)
+
+        # TODO: replace your historical best if you've defeated it 
+        hfit = self.ff.fitness(Individual.factory("HBest", self.n_thresholds, self.p))
+        if ( hfit.value < self.current_fit.value):
+            hfit = self.current_fit
+            self.p['HBest'] = self.p['Coordinate']
+
         self.iteration += 1 
 
-    def __clamp(self):
-        pass
-    
-    def __compute_neighbour_fitness(self):
-        pass
+    def __clampV(self):
+
+        def clamp(row):
+            if row['Velocity'] > self.v_max:
+                return self.v_max
+            elif row['Velocity'] < (-self.v_max):
+                return -self.v_max
+            else:
+                return row['Velocity']
+
+        self.p['Velocity'] = self.p.apply(clamp, axis=1)
+
+    def __clampPos(self):
+
+        def maxOf(p):
+            return self.constraints[p]['max']
+
+        def minOf(p):
+            return self.constraints[p]['min']    
+
+        def clampP(row):
+            if row['Coordinate'] > maxOf(row.name):
+                return maxOf(row.name)
+            elif row['Coordinate'] < minOf(row.name):
+                return minOf(row.name)
+            else:
+                return row['Coordinate']
+
+
+        self.p['Coordinate'] = self.p.apply(clampP, axis=1)
+
+
+    def __repr__(self):
+        str = "<Particle: "
+
+
+        str += ">"
+        return str

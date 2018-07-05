@@ -49,17 +49,30 @@ class PSO(AOptimizer):
         while (not self.__converged()):
             for p in self.swarm:
                 p.update_velocity(self.__find_best_neighbour(p))
+
+        i = 0
+        bestp = self.swarm[0]
+        for p in self.swarm:
+           if p.current_fit.value > bestp.current_fit.value:
+               bestp = p
+
+        print(bestp.p)
+        print(bestp.current_fit)
         
         pass
 
     def __populate(self, ff: AFitnessFunction):
-        self.swarm = [  Particle(ff,
+        print("Initialise swarm with %d particles" % self.swarm_size)
+        self.swarm = [  Particle(function=ff, v_max=3,
                         constraints={'quantity': {'min': 0, 'max': 100},
                         'b_start': {'min': 0.0, 'max': 1.0},
                         'b_end': {'min': 0.0, 'max': 1.0},
                         'b_price': {'min': 0.0, 'max': 1.0},
                         'threshold_weights': {'min': 0.0, 'max': 1.0},
-                        'q_short': {'min': 0, 'max': 100}})
+                        'q_short': {'min': 0, 'max': 100}},
+                        w_inertia=self.w_inertia,
+                        w_memory= self.w_memory,
+                        w_neigh=self.w_neigh)
                         for i in range(self.swarm_size)]
 
     def __converged(self):
@@ -67,7 +80,7 @@ class PSO(AOptimizer):
         TODO
         """
         self.conv += 1
-        return self.conv > 3
+        return self.conv > 10
 
     def __find_best_neighbour(self, p: Particle):
         """
@@ -76,8 +89,8 @@ class PSO(AOptimizer):
         """
         bestp = self.swarm[0]
         for p in self.swarm:
-            bestf = self.ff.fitness(Individual(bestp.n_thresholds, bestp.p))
-            currentf = self.ff.fitness(Individual(p.n_thresholds, p.p))
-            if (currentf.mdd > bestf.mdd):
+            bestf = self.ff.fitness(Individual.factory("Coordinate", bestp.n_thresholds, bestp.p))
+            currentf = self.ff.fitness(Individual.factory("Coordinate", p.n_thresholds, p.p))
+            if (currentf.value > bestf.value):
                 bestp = p
         return bestp

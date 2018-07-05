@@ -26,6 +26,22 @@ class Individual:
         self.q_short = q_short
     """
 
+    
+    def factory(type, threshold_number, indiv: pd.DataFrame):
+
+        if (type == "Coordinate"):
+            return IndividualFromCoord(threshold_number, indiv)
+
+        elif (type == "HBest"):
+            return IndividualFromHBest(threshold_number, indiv)
+        
+        else:
+            raise AssertionError("Individual type does not exist: " + type)
+
+    factory = staticmethod(factory)
+
+class IndividualFromCoord(Individual):
+
     def __init__(self, threshold_number: int, indiv: pd.DataFrame):
         self.quantity = indiv.loc['quantity']['Coordinate']
         self.b_start = indiv.loc['b_start']['Coordinate']
@@ -36,4 +52,19 @@ class Individual:
         w = []
         for i in range(0, threshold_number):
             w.append(indiv.loc['t'+str(i + 1)]['Coordinate'])
+        self.threshold_weights = w
+
+
+class IndividualFromHBest(Individual):
+
+    def __init__(self, threshold_number: int, indiv: pd.DataFrame):
+        self.quantity = indiv.loc['quantity']['HBest']
+        self.b_start = indiv.loc['b_start']['HBest']
+        self.b_end = indiv.loc['b_end']['HBest']
+        self.b_price = indiv.loc['b_price']['HBest']
+        self.q_short = indiv.loc['q_short']['HBest']
+        self.threshold_number = threshold_number
+        w = []
+        for i in range(0, threshold_number):
+            w.append(indiv.loc['t'+str(i + 1)]['HBest'])
         self.threshold_weights = w
