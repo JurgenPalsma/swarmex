@@ -3,6 +3,9 @@ from particle import Particle
 from fitness import AFitnessFunction, Fitness
 from individual import Individual
 from enum import Enum, unique
+import time
+import logging
+
 
 @unique
 class Neighbourhood(Enum):
@@ -11,58 +14,66 @@ class Neighbourhood(Enum):
 
 class PSO(AOptimizer):
     """
-    PSO algorithm encapsulation. 
-    TODO: 
-            - define arguments, make better default params
-            - neighbourhood
+    PSO algorithm encapsulation.
     """
+
     def __init__(self,
                 swarm_size: int = 10,
-                v_max: float = 1,
-                w_inertia: float = 1,
-                w_memory: float = 1,
-                w_neigh: float = 1,
+                v_max: float = 10.0,
+                w_inertia: float = 0.55,
+                w_memory: float = 0.55,
+                w_neigh: float = 0.55,
                 k: int = 5,
-                vel_conv_threshold: float = 0.01,
-                neighbourhood: int = Neighbourhood.GLOBAL):
+                vel_conv_threshold: float = 0.001,
+                neighbourhood: int = Neighbourhood.GLOBAL,
+                max_iter: int = 5):
+        logger = logging.getLogger(__name__)
+        logger.info("Initialize PSO with swarm_size:%i, v_max:%f, w_inertia:%f, w_memory:%f, w_neigh:%f, k:%i, vel_conv_thresholds:%f, neighbourhood:%s, max_iter:%i" % 
+            (swarm_size, v_max, w_inertia, w_memory, w_neigh, k, vel_conv_threshold, neighbourhood.__repr__(), max_iter))
         self.swarm_size = swarm_size
         self.v_max = v_max
         self.w_inertia = w_inertia
         self.w_memory = w_memory
         self.w_neigh = w_neigh
-        self.k = k
+        if k == 0:
+            self.k = swarm_size / 4
+        else:
+            self.k = k
         self.vel_conv_threshold = vel_conv_threshold,
         self.neighbourhood = neighbourhood
+        self.converged = False
+        self.max_iter = max_iter
 
-
-
-    def optimize(self, ff: AFitnessFunction) -> Fitness:
+    def optimize(self, ff: AFitnessFunction) -> Particle:
         """
         Takes an AFitnessFunction abstract fitness function ff and returns an optimum
         """
+
         # Initialize swarm
         self.__populate(ff)
         self.ff = ff
-        self.conv = 0
+        self.iteration = 0
 
         #Loop
         while (not self.__converged()):
+            diff_in_vs = []
             for p in self.swarm:
-                p.update_velocity(self.__find_best_neighbour(p))
-
-        i = 0
-        bestp = self.swarm[0]
-        for p in self.swarm:
-           if p.current_fit.value > bestp.current_fit.value:
-               bestp = p
-
-        print(bestp.p)
-        print(bestp.current_fit)
-        
-        pass
+                # Move the particle and add its difference of velocity to list
+                diff_in_vs.append(p.update_velocity(self.__find_best_neighbour(p)))
+            
+            # Check if we reached minimum velocity change
+            ik = 0
+            for d in diff_in_vs:
+                if (self.__min_vel(d)):
+                    ik += 1
+                    if (ik >= self.k):
+                        self.converged = True
+                        break
+                    
+        self.swarm.sort(key=lambda x: x.current_fit.ret, reverse=True)
+        return self.swarm[0]
 
     def __populate(self, ff: AFitnessFunction):
-        print("Initialise swarm with %d particles" % self.swarm_size)
         self.swarm = [  Particle(function=ff, v_max=3,
                         constraints={'quantity': {'min': 0, 'max': 100},
                         'b_start': {'min': 0.0, 'max': 1.0},
@@ -76,21 +87,32 @@ class PSO(AOptimizer):
                         for i in range(self.swarm_size)]
 
     def __converged(self):
+        self.iteration += 1
+        if self.iteration > self.max_iter :
+            self.converged = True
+        return self.converged
+
+    def __min_vel(self, d):
         """
-        TODO
+        Returns true if we reach the minimum velocity change in a particle
+        We ignore the velocities which tend to not reach minimum change
         """
-        self.conv += 1
-        return self.conv > 10
+        d = d.drop('quantity', axis=0)
+        d = d.drop('q_short')
+        return (abs(d.max()) < self.vel_conv_threshold)
 
     def __find_best_neighbour(self, p: Particle):
         """
         For now, just returns global neighbourhood
-        TODO 
         """
         bestp = self.swarm[0]
         for p in self.swarm:
             bestf = self.ff.fitness(Individual.factory("Coordinate", bestp.n_thresholds, bestp.p))
+            while (bestf is None):
+                bestf = self.ff.fitness(Individual.factory("Coordinate", bestp.n_thresholds, bestp.p))
+                #time.sleep(1)
             currentf = self.ff.fitness(Individual.factory("Coordinate", p.n_thresholds, p.p))
+
             if (currentf.value > bestf.value):
                 bestp = p
         return bestp

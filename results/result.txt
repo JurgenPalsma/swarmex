@@ -1,0 +1,2 @@
+number of runs	avg wealth	avg return	avg value	avg profit	avg mdd	avg transactions	avg short transactions
+3	500003.129429	  0.000626	  0.000553	  3.129429	  0.000362	118	0

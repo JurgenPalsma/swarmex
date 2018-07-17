@@ -1,6 +1,7 @@
 from py4j.java_gateway import JavaGateway, GatewayParameters, get_field
 from individual import Individual
 from fitness import Fitness
+import logging
 
 class pjGateWay:
     """
@@ -20,6 +21,8 @@ class fGateway(pjGateWay):
         """
         Make sure the port is the same as the JVM machine
         """
+        logger = logging.getLogger(__name__)
+        logger.debug("Creating a fitness gateway on port %f" % port)
         pjGateWay.__init__(self, port)
         self.ga = self.way.entry_point
     
@@ -28,8 +31,20 @@ class fGateway(pjGateWay):
         Executes the DC-GA fitness function and returns a python-converted fitness struct
         """        
         j_indiv = self.__convert_individual_p_to_j(individual)
-        return self.__convert_fitness_j_to_p(self.way.fitnessGateway(j_indiv))
+        fit = self.__convert_fitness_j_to_p(self.way.fitnessGateway(j_indiv))
+        #if (fit.mdd == 0 ):
+        #    print("Fit at 0 with individual:")
+        #    print(individual.__repr__())
+        return fit
         
+    def testFitness(self, individual: Individual):
+        """
+        Executes the DC-GA fitness function on test data
+        """        
+        j_indiv = self.__convert_individual_p_to_j(individual)
+        fit = self.__convert_fitness_j_to_p(self.way.testFitnessGateway(j_indiv))
+        return fit
+
     def __convert_individual_p_to_j(self, individual: Individual):
         p_len = 5 + len(individual.threshold_weights)
         t_indiv = self.way.new_array(self.way.jvm.double, p_len)
