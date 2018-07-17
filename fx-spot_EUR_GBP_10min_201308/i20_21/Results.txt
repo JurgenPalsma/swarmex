@@ -1,1 +1,0 @@
-	Wealth	Return	Fitness	Realised Profit	MDD	NoOfTransactions	NoOfShortSellingTransactions
