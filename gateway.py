@@ -15,14 +15,11 @@ class pjGateWay:
 class fGateway(pjGateWay):
     """
     Bridge between python and java through py4j to get the Java Fitness function
-    TODO: convert fitness to struct
     """
     def __init__(self, port):
         """
         Make sure the port is the same as the JVM machine
         """
-        logger = logging.getLogger(__name__)
-        logger.debug("Creating a fitness gateway on port %f" % port)
         pjGateWay.__init__(self, port)
         self.ga = self.way.entry_point
     
@@ -31,19 +28,14 @@ class fGateway(pjGateWay):
         Executes the DC-GA fitness function and returns a python-converted fitness struct
         """        
         j_indiv = self.__convert_individual_p_to_j(individual)
-        fit = self.__convert_fitness_j_to_p(self.way.fitnessGateway(j_indiv))
-        #if (fit.mdd == 0 ):
-        #    print("Fit at 0 with individual:")
-        #    print(individual.__repr__())
-        return fit
+        return self.__convert_fitness_j_to_p(self.way.fitnessGateway(j_indiv))
         
     def testFitness(self, individual: Individual):
         """
         Executes the DC-GA fitness function on test data
         """        
         j_indiv = self.__convert_individual_p_to_j(individual)
-        fit = self.__convert_fitness_j_to_p(self.way.testFitnessGateway(j_indiv))
-        return fit
+        return self.__convert_fitness_j_to_p(self.way.testFitnessGateway(j_indiv))
 
     def __convert_individual_p_to_j(self, individual: Individual):
         p_len = 5 + len(individual.threshold_weights)
@@ -60,7 +52,6 @@ class fGateway(pjGateWay):
         return t_indiv
 
     def __convert_fitness_j_to_p(self, f):
-        # TODO
         return Fitness(
             value = get_field(f, "value"),
             u_sell = get_field(f, "uSell"),

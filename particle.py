@@ -191,12 +191,12 @@ class Particle:
     def __repr__(self):
         return ("<Particle: %s>" % self.p.to_string())
 
-    def log(self, iteration=0):
+    def log(self, path, iteration=0):
         if (not self.tf):
             self.tf = self.ff.testFitness(Individual.factory("Coordinate", self.n_thresholds, self.p))
-        with open('results/trainfitness.txt', 'a') as f:
+        with open(path + 'testfitness.txt', 'a') as f:
                 f.write("%d\t%s" % (iteration, self.tf))
-        with open('results/testfitness.txt', 'a') as f:
+        with open(path + 'trainfitness.txt', 'a') as f:
                 f.write("%d\t%s" % (iteration, self.current_fit))
     
     def test(self):
@@ -204,3 +204,4 @@ class Particle:
             Assign a fitness to the particle's performance on the test data
         """
         self.tf = self.ff.testFitness(Individual.factory("Coordinate", self.n_thresholds, self.p))
+        print("Particle generated fitness: %s " % self.tf)
