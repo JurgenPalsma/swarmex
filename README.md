@@ -1,8 +1,11 @@
 # Optimizing FOREX trading strategies with natured-inspired machine learning 
 
-The goal of the project is to optimize trading strategies based on Directional Changes using nature inspired optimization algorithms. (so far: 
-                    - Particle Swarm Optimization (PSO)
-                    - A custom algo based on shuffled frog leaping - Continuous Shuffled Frog Leaping (CSFLA))
+The goal of the project is to optimize trading strategies based on Directional Changes using nature inspired optimization algorithms.
+
+Algorithms used:
+
+- Particle Swarm Optimization (PSO)
+- A custom algo based on shuffled frog leaping - Continuous Shuffled Frog Leaping (CSFLA)
 
 To do so, I use the trading strategy provided by [[1]](http://www.kampouridis.net/papers/DC-GA.pdf) which use Genetic Algorithms to find a suitable set of parameters for a Directional Change - based strategy.
 
