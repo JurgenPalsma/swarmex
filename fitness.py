@@ -1,4 +1,4 @@
-class Fitness:
+class Fitness(dict):
     """ 
         Struct which has all fitness value variables that DC java strategy returns.
         TODO: define all params

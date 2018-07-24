@@ -2,6 +2,10 @@ from optimizer import AOptimizer
 from frog import Frog
 import numpy as np 
 import pandas as pd
+from tools import setup_logging, calculate_average_fitness
+import logging
+import os
+import pickle
 
 class CSFLA(AOptimizer):
     """
@@ -104,5 +108,53 @@ class CSFLA(AOptimizer):
 
         return self.pop[0]
         
+def run_csfla(fitness_function, n_try_runs, results_file_path, n, m, sn, Gm = 10, Gs =10):
+    # Setup Logging
+    setup_logging()
+    logger = logging.getLogger(__name__)
+    open(results_file_path + 'testfitness.txt', 'w').close()
+    open(results_file_path + 'trainfitness.txt', 'w').close()
 
+    with open(results_file_path + 'testfitness.txt', 'a') as f:
+        f.write("run\twealth\treturn\tvalue\tprofit\tmdd\ttransactions\tshort transactions\n")
+    with open(results_file_path + 'trainfitness.txt', 'a') as f:
+        f.write("run\twealth\treturn\tvalue\tprofit\tmdd\ttransactions\tshort transactions\n")
+
+    # Set the fitness function
+    fitness_function = fitness_function
+
+    # Init variables
+    n_runs = 0
+    tfitnesses = {}
+
+    # Main loop
+    for i in range(0, n_try_runs):
+
+        csfla = CSFLA(20, 5, 3, 40, 40)
+        frog = csfla.optimize(fitness_function)
         
+        # Test the particle and add it to list if it's valid
+        frog.test()
+        if (frog.tf.value < -100) or (frog.tf.mdd == 0):
+            logger.info("Run %d: frog not taken into account in average results: fitness is invalid" % i)
+        else:
+            tfitnesses[i] = frog.tf
+            n_runs += 1
+
+        # Log results
+        frog.log(iteration=i, path=results_file_path)
+        pickle.dump(frog.p, open(results_file_path+"/pickles/frog_run_"+str(i)+".pickle", "wb" ) )
+
+    calculate_average_fitness(tfitnesses, results_file_path)
+
+def run_csfla_from_config(ff, n_runs, config):
+    if not os.path.exists(config['results_file_path']):
+        os.makedirs(config['results_file_path'])
+    if not os.path.exists(config['results_file_path']+'pickles/'):
+        os.makedirs(config['results_file_path']+'pickles/')
+    run_csfla(ff, n_runs, config['results_file_path'],
+    n=config['n_frogs'],
+    m=config['n_sm_frogs'],
+    sn=config['n_memeplex'],
+    Gm=config['max_generations'],
+    Gs=config['max_sub_generations'])

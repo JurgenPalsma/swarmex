@@ -4,6 +4,8 @@ import pandas as pd
 import numpy as np
 import random
 import logging
+import json
+import pickle
 
 class Particle:
     """
@@ -187,10 +189,9 @@ class Particle:
 
         self.p['Coordinate'] = self.p.apply(clampP, axis=1)
 
-
     def __repr__(self):
         return ("<Particle: %s>" % self.p.to_string())
-
+        
     def log(self, path, iteration=0):
         if (not self.tf):
             self.tf = self.ff.testFitness(Individual.factory("Coordinate", self.n_thresholds, self.p))
@@ -198,6 +199,9 @@ class Particle:
                 f.write("%d\t%s" % (iteration, self.tf))
         with open(path + 'trainfitness.txt', 'a') as f:
                 f.write("%d\t%s" % (iteration, self.current_fit))
+        pickle.dump(self.tf, open(path+"pickles/testfit_run_"+str(iteration)+".pickle", "wb" ))
+        pickle.dump(self.current_fit, open(path+"pickles/trainfit_run_"+str(iteration)+".pickle", "wb" ))
+
     
     def test(self):
         """

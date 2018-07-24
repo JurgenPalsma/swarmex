@@ -2,6 +2,7 @@ from fitness import Fitness
 from individual import Individual
 import pandas as pd
 import random
+import pickle
 
 class Frog():
 
@@ -62,8 +63,9 @@ class Frog():
                 f.write("%d\t%s" % (iteration, self.tf))
         with open(path + 'trainfitness.txt', 'a') as f:
                 f.write("%d\t%s" % (iteration, self.current_fit))
+        pickle.dump(self.tf, open(path+"pickles/testfit_run_"+str(iteration)+".pickle", "wb" ))
+        pickle.dump(self.current_fit, open(path+"pickles/trainfit_run_"+str(iteration)+".pickle", "wb" ))
 
-                
 
     def __repr__(self):
         return self.p.to_string()
