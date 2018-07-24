@@ -17,6 +17,7 @@ To ensure robustness of my proposed algorithm, I test it with the same configura
 ## Running the experiment:
 
 Step 1: run the algorithms
+
 Everything is pre-configured and can be modified in the ```config.json ``` file
 ```
 python main.py -c config.json
