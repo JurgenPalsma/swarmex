@@ -23,7 +23,9 @@ Everything is pre-configured and can be modified in the ```config.json ``` file
 python main.py -c config.json
 ```
 
+
 Step 2 (optional): analyse the results by running the ipython notebook(s) with [jupyter](http://jupyter.readthedocs.io/en/latest/running.html) 
+
 
 Step 3 (optional): run a Kolmogorov-Smirnov test on GA and PSO generated individuals to make sure we sample from the same distribution and that our results are not just random (results from longer experiments are provided when running the test)
 ```
