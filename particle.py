@@ -6,6 +6,7 @@ import random
 import logging
 import json
 import pickle
+import time
 
 class Particle:
     """
@@ -108,7 +109,6 @@ class Particle:
         returns amount of change in velocity
         """
         self.p['Neighbour'] = neighbour.p['Coordinate']
-        
         # Switch to update velocity 
         def updatev(row):
             if ((row['Neighbour'] - row['Coordinate']) == 0):
