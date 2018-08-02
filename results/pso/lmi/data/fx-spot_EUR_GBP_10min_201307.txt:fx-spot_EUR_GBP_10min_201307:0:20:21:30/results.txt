@@ -1,2 +1,2 @@
 file	number of runs	avg wealth	avg return	avg value	avg profit	avg mdd	avg transactions	avg short transactions
-results/pso/lmi/data/fx-spot_EUR_GBP_10min_201307.txt:fx-spot_EUR_GBP_10min_201307:0:20:21:30/	10	500003.474727	  0.000695	  0.000498	  3.474727	  0.000987	44	0
+results/pso/lmi/data/fx-spot_EUR_GBP_10min_201307.txt:fx-spot_EUR_GBP_10min_201307:0:20:21:30/	10	500003.354939	  0.000671	  0.000496	  3.354939	  0.000875	41	0
