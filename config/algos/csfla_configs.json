@@ -1,0 +1,42 @@
+{
+    "csfla reference": {
+        "base_results_file_path": "results/csfla/reference/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "extreme niching cheap": {
+        "base_results_file_path": "results/csfla/enc/",
+        "n_frogs": 50,
+        "n_sm_frogs": 10,
+        "n_memeplex": 20,
+        "max_generations": 40,
+        "max_sub_generations": 100
+    },
+    "extreme niching expensive": {
+        "base_results_file_path": "results/csfla/ene/",
+        "n_frogs": 100,
+        "n_sm_frogs": 10,
+        "n_memeplex": 20,
+        "max_generations": 100,
+        "max_sub_generations": 100
+    },
+    "global cheap": {
+        "base_results_file_path": "results/csfla/gc/",
+        "n_frogs": 50,
+        "n_sm_frogs": 3,
+        "n_memeplex": 3,
+        "max_generations": 40,
+        "max_sub_generations": 20
+    },
+    "global expensive": {
+        "base_results_file_path": "results/csfla/ge/",
+        "n_frogs": 100,
+        "n_sm_frogs": 3,
+        "n_memeplex": 3,
+        "max_generations": 100,
+        "max_sub_generations": 20
+    }
+}

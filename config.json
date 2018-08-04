@@ -1,9 +1,16 @@
 {
     "data": {
         "files": [
-            "data/fx-spot_EUR_GBP_10min_201306.txt:fx-spot_EUR_GBP_10min_201306:02:20:21:28",
-            "data/fx-spot_EUR_GBP_10min_201307.txt:fx-spot_EUR_GBP_10min_201307:0:20:21:30",
-            "data/fx-spot_EUR_GBP_10min_201308.txt:fx-spot_EUR_GBP_10min_201308:0:20:21:29"
+            "data/fx-spot_EUR_GBP_10min_201309.txt:fx-spot_EUR_GBP_10min_201309:0:20:21:29",
+            "data/fx-spot_EUR_GBP_10min_201310.txt:fx-spot_EUR_GBP_10min_201310:0:20:21:30",
+            "data/fx-spot_EUR_GBP_10min_201311.txt:fx-spot_EUR_GBP_10min_201311:0:20:21:28",
+            "data/fx-spot_EUR_GBP_10min_201312.txt:fx-spot_EUR_GBP_10min_201312:0:20:21:30",
+            "data/fx-spot_EUR_GBP_10min_201401.txt:fx-spot_EUR_GBP_10min_201401:0:20:21:28",
+            "data/fx-spot_EUR_GBP_10min_201402.txt:fx-spot_EUR_GBP_10min_201402:0:20:21:26",
+            "data/fx-spot_EUR_GBP_10min_201403.txt:fx-spot_EUR_GBP_10min_201403:0:20:21:29",
+            "data/fx-spot_EUR_GBP_10min_201404.txt:fx-spot_EUR_GBP_10min_201404:0:20:21:29",
+            "data/fx-spot_EUR_GBP_10min_201405.txt:fx-spot_EUR_GBP_10min_201405:0:18:19:26"
+
         ],
         "f": [
             "data/fx-spot_EUR_GBP_10min_201306.txt:fx-spot_EUR_GBP_10min_201306:02:20:21:28",
