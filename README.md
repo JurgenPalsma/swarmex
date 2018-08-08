@@ -18,19 +18,22 @@ To ensure robustness of my proposed algorithm, I test it with the same configura
 
 Step 1: run the algorithms
 
-Everything is pre-configured and can be modified in the ```config.json ``` file
+Config files are configurated for an example experiment. The example experiment only runs for one currency pair, on one month of 10 minute data.
 ```
-python main.py -c config.json
+python main.py -c config/config.json
+```
+
+Everything is configurable, feel free to check the configs files and the different running flags
+```
+python main.py -h
 ```
 
 
-Step 2 (optional): analyse the results by running the ipython notebook(s) with [jupyter](http://jupyter.readthedocs.io/en/latest/running.html) 
+
+Step 2 (optional): analyse the results by running the ipython notebooks in the ```analysis/``` folder with [jupyter](http://jupyter.readthedocs.io/en/latest/running.html) 
 
 
-Step 3 (optional): run a Kolmogorov-Smirnov test on GA and PSO generated individuals to make sure we sample from the same distribution and that our results are not just random (results from longer experiments are provided when running the test)
-```
-python kstest.py 
-```
+Step 3 (optional, not automated yet): run a Friedman statistical test on generated individuals
 
 
 ## References:
