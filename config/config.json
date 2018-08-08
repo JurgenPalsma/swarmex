@@ -1,10 +1,7 @@
 {
     "data": {
         "files": [
-            "data/EUR_GBP/fx-spot_EUR_GBP_10min_201306.txt:fx-spot_EUR_GBP_10min_201306:02:20:21:28",
-            "data/GBP_CHF/fx-spot_GBP_CHF_10min_201306.txt:fx-spot_GBP_CHF_10min_201306:02:20:21:27",
-            "data/GBP_USD/fx-spot_GBP_USD_10min_201306.txt:fx-spot_GBP_USD_10min_201306:02:20:21:28",
-            "data/EUR_USD/fx-spot_EUR_USD_10min_201306.txt:fx-spot_EUR_USD_10min_201306:02:20:21:29"
+            "data/EUR_GBP/fx-spot_EUR_GBP_10min_201306.txt:fx-spot_EUR_GBP_10min_201306:02:20:21:28"
         ],
         "EUR_GBP": [
             "data/fx-spot_EUR_GBP_10min_201306.txt:fx-spot_EUR_GBP_10min_201306:02:20:21:28",
