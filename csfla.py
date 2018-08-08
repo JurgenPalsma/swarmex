@@ -28,7 +28,7 @@ class CSFLA(AOptimizer):
     def __populate(self):
         self.pop = [ Frog(function=self.ff,
                         constraints=self.constraints)
-                        for i in range(self.n)]
+                        for i in range(self.n) ]
 
         for idx, f in enumerate(self.pop):
             while f.current_fit.ret == 0:
@@ -48,7 +48,6 @@ class CSFLA(AOptimizer):
         submemeplex = list()
         for i, f in enumerate(memeplex):
             pbs.append((2 * (self.n + 1 - i)) / (self.n * (self.n + 1)))
-        
         for i in range(self.sn):
             submemeplex.append(np.random.choice(memeplex, 1, pbs)[0])
         return submemeplex
@@ -84,8 +83,8 @@ class CSFLA(AOptimizer):
     def optimize(self, ff):
         self.ff = ff
 
+        # Initialize population
         self.__populate()
-
         self.pop.sort(key=lambda x: x.current_fit.ret, reverse=True) # sort by descending fitness
 
         gm = 0 # max generation
@@ -102,8 +101,6 @@ class CSFLA(AOptimizer):
                 new_generation.extend(submemeplex)
             self.pop = new_generation
             self.pop.sort(key=lambda x: x.current_fit.ret, reverse=True) # sort by descending fitness
-            #print("Generation: %d" % gm)
-            #print(self.pop[0].current_fit)
             gm += 1
 
         return self.pop[0]
@@ -130,7 +127,7 @@ def run_csfla(fitness_function, n_try_runs, results_file_path, n, m, sn, Gm = 10
     # Main loop
     for i in range(0, n_try_runs):
 
-        csfla = CSFLA(20, 5, 3, 40, 40)
+        csfla = CSFLA(n=n, m=m, sn=sn, Gm=Gm, Gs=Gs)
         frog = csfla.optimize(fitness_function)
         
         # Test the particle and add it to list if it's valid
@@ -148,10 +145,13 @@ def run_csfla(fitness_function, n_try_runs, results_file_path, n, m, sn, Gm = 10
     calculate_average_fitness(tfitnesses, results_file_path)
 
 def run_csfla_from_config(ff, n_runs, config):
+    # Make sure result directories exist
     if not os.path.exists(config['results_file_path']):
         os.makedirs(config['results_file_path'])
     if not os.path.exists(config['results_file_path']+'pickles/'):
         os.makedirs(config['results_file_path']+'pickles/')
+    
+    # Run CSFLA with config in providef file
     run_csfla(ff, n_runs, config['results_file_path'],
     n=config['n_frogs'],
     m=config['n_sm_frogs'],

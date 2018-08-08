@@ -5,7 +5,7 @@ import os
 import json
 
 def setup_logging(
-    default_path='logging.json',
+    default_path='/config/logging.json',
     default_level=logging.INFO,
     env_key='LOG_CFG'
 ):
@@ -62,8 +62,8 @@ def calculate_average_fitness(tfitnesses, log_path):
     
     open(log_path + 'results.txt', 'w').close()
     with open(log_path + 'results.txt', 'a') as f:
-        f.write("number of runs\tavg wealth\tavg return\tavg value\tavg profit\tavg mdd\tavg transactions\tavg short transactions\n")
-        f.write("%d\t%s" % (n_runs, Af))
+        f.write("file\tnumber of runs\tavg wealth\tavg return\tavg value\tavg profit\tavg mdd\tavg transactions\tavg short transactions\n")
+        f.write("%s\t%d\t%s" % (log_path, n_runs, Af))
         print("Average fitness: %s" % Af)
     pickle.dump(Af.__dict__, open(log_path+"pickles/average_fitness.pickle", "wb" ) )
 

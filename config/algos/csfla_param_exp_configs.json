@@ -1,0 +1,130 @@
+{
+    "csfla reference": {
+        "base_results_file_path": "results/csfla/reference/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "low n frogs": {
+        "base_results_file_path": "results/csfla/lnf/",
+        "n_frogs": 10,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "medium n frogs": {
+        "base_results_file_path": "results/csfla/mnf/",
+        "n_frogs": 30,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "high n frogs": {
+        "base_results_file_path": "results/csfla/hnf/",
+        "n_frogs": 50,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "low n memeplexes": {
+        "base_results_file_path": "results/csfla/lnm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 2,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "medium n memeplexes": {
+        "base_results_file_path": "results/csfla/mnm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 3,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "high n memeplexes": {
+        "base_results_file_path": "results/csfla/hnm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 30,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "low n sm frogs": {
+        "base_results_file_path": "results/csfla/lnsm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 2,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "medium n sm frogs": {
+        "base_results_file_path": "results/csfla/mnsm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 3,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "high n sm frogs": {
+        "base_results_file_path": "results/csfla/hnsm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 4,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "low generations": {
+        "base_results_file_path": "results/csfla/lg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 5,
+        "max_sub_generations": 40
+    },
+    "medium generations": {
+        "base_results_file_path": "results/csfla/mg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 20,
+        "max_sub_generations": 40
+    },
+    "high generations": {
+        "base_results_file_path": "results/csfla/hg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 100,
+        "max_sub_generations": 40
+    },
+    "low sub generations": {
+        "base_results_file_path": "results/csfla/lsg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 10
+    },
+    "medium sub generations": {
+        "base_results_file_path": "results/csfla/msg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 20
+    },
+    "high sub generations": {
+        "base_results_file_path": "results/csfla/hsg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 100
+    }
+}

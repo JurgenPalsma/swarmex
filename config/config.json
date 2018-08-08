@@ -1,6 +1,12 @@
 {
     "data": {
         "files": [
+            "data/EUR_GBP/fx-spot_EUR_GBP_10min_201306.txt:fx-spot_EUR_GBP_10min_201306:02:20:21:28",
+            "data/GBP_CHF/fx-spot_GBP_CHF_10min_201306.txt:fx-spot_GBP_CHF_10min_201306:02:20:21:27",
+            "data/GBP_USD/fx-spot_GBP_USD_10min_201306.txt:fx-spot_GBP_USD_10min_201306:02:20:21:28",
+            "data/EUR_USD/fx-spot_EUR_USD_10min_201306.txt:fx-spot_EUR_USD_10min_201306:02:20:21:29"
+        ],
+        "EUR_GBP": [
             "data/fx-spot_EUR_GBP_10min_201306.txt:fx-spot_EUR_GBP_10min_201306:02:20:21:28",
             "data/fx-spot_EUR_GBP_10min_201307.txt:fx-spot_EUR_GBP_10min_201307:0:20:21:30",
             "data/fx-spot_EUR_GBP_10min_201308.txt:fx-spot_EUR_GBP_10min_201308:0:20:21:29",
@@ -14,26 +20,23 @@
             "data/fx-spot_EUR_GBP_10min_201404.txt:fx-spot_EUR_GBP_10min_201404:0:20:21:29",
             "data/fx-spot_EUR_GBP_10min_201405.txt:fx-spot_EUR_GBP_10min_201405:0:20:21:26"
         ],
-        "f": [
-            "data/fx-spot_EUR_GBP_10min_201306.txt:fx-spot_EUR_GBP_10min_201306:02:20:21:28",
-            "data/fx-spot_EUR_GBP_10min_201307.txt:fx-spot_EUR_GBP_10min_201307:0:20:21:30",
-            "data/fx-spot_EUR_GBP_10min_201308.txt:fx-spot_EUR_GBP_10min_201308:0:20:21:29",
-            "data/fx-spot_EUR_GBP_10min_201309.txt:fx-spot_EUR_GBP_10min_201309:0:20:21:29",
-            "data/fx-spot_EUR_GBP_10min_201310.txt:fx-spot_EUR_GBP_10min_201310:0:20:21:30",
-            "data/fx-spot_EUR_GBP_10min_201311.txt:fx-spot_EUR_GBP_10min_201311:0:20:21:28",
-            "data/fx-spot_EUR_GBP_10min_201312.txt:fx-spot_EUR_GBP_10min_201312:0:20:21:30",
-            "data/fx-spot_EUR_GBP_10min_201401.txt:fx-spot_EUR_GBP_10min_201401:0:20:21:28",
-            "data/fx-spot_EUR_GBP_10min_201402.txt:fx-spot_EUR_GBP_10min_201402:0:20:21:26",
-            "data/fx-spot_EUR_GBP_10min_201403.txt:fx-spot_EUR_GBP_10min_201403:0:20:21:29",
-            "data/fx-spot_EUR_GBP_10min_201404.txt:fx-spot_EUR_GBP_10min_201404:0:20:21:29",
-            "data/fx-spot_EUR_GBP_10min_201405.txt:fx-spot_EUR_GBP_10min_201405:0:20:21:26"]
+        "GBP_CHF": [
+            "data/GBP_CHF/fx-spot_GBP_CHF_10min_201306.txt:fx-spot_GBP_CHF_10min_201306:02:20:21:27"
+        ],
+        "GBP_USD": [
+            "data/GBP_USD/fx-spot_GBP_USD_10min_201306.txt:fx-spot_GBP_USD_10min_201306:02:20:21:28"
+        ],
+        "EUR_USD": [
+            "data/EUR_USD/fx-spot_EUR_USD_10min_201306.txt:fx-spot_EUR_USD_10min_201306:02:20:21:29"
+        ]
+
     },
     "algos": {
-        "n_runs": 10
+        "n_runs": 1
     },
     "individual": {
         "constraints": {
-            "quantity": {"min": 0, "max": 100},
+            "quantity": {"min": 0, "max": 1000},
             "b_start": {"min": 0.0, "max": 1.0},
             "b_end": {"min": 0.0, "max": 1.0},
             "b_price": {"min": 0.0, "max": 1.0},
@@ -43,8 +46,8 @@
     },
     "pso": {
         "base_results_file_path": "results/pso/",
-        "swarm_size": 40, 
-        "v_max": 10.0,
+        "swarm_size": 10, 
+        "v_max": 100.0,
         "w_inertia": 0.55,
         "w_memory": 0.55,
         "w_neigh": 0.55,

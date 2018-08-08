@@ -4,8 +4,6 @@ from individual import Individual, IndividualFromRaw
 
 import os
 import json
-import logging
-import logging.config
 
 fitness_function = JavaFitness()
 

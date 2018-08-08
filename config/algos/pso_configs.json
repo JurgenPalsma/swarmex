@@ -1,0 +1,62 @@
+{
+    "pso reference": {
+        "base_results_file_path": "results/pso/reference/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "exploratory cheap": {
+        "base_results_file_path": "results/pso/explorecheap/",
+        "swarm_size": 10, 
+        "v_max": 100.0,
+        "w_inertia": 0.95,
+        "w_memory": 0.55,
+        "w_neigh": 0.05,
+        "k": 3,
+        "vel_conv_threshold": 0.01,
+        "neighbourhood": 0,
+        "max_iter": 3
+    },
+    "exploratory expensive": {
+        "base_results_file_path": "results/pso/exploreexp/",
+        "swarm_size": 80, 
+        "v_max": 100.0,
+        "w_inertia": 0.95,
+        "w_memory": 0.55,
+        "w_neigh": 0.05,
+        "k": 3,
+        "vel_conv_threshold": 0.000001,
+        "neighbourhood": 0,
+        "max_iter": 3
+    },
+    "exploitatory cheap": {
+        "base_results_file_path": "results/pso/exploitcheap/",
+        "swarm_size": 10, 
+        "v_max": 200.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.05,
+        "w_neigh": 0.95,
+        "k": 20,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 10
+    },
+    "exploitatory expensive": {
+        "base_results_file_path": "results/pso/exploitexp/",
+        "swarm_size": 80, 
+        "v_max": 200.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.05,
+        "w_neigh": 0.95,
+        "k": 20,
+        "vel_conv_threshold": 0.000001,
+        "neighbourhood": 0,
+        "max_iter": 10
+    }
+}
