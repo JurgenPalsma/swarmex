@@ -1,2 +1,0 @@
-file	number of runs	avg wealth	avg return	avg value	avg profit	avg mdd	avg transactions	avg short transactions
-results/csfla/gc/data/fx-spot_EUR_GBP_10min_201402.txt:fx-spot_EUR_GBP_10min_201402:0:20:21:26/	10	499999.844333	 -0.000031	 -0.000186	 -0.155667	  0.000776	61	0

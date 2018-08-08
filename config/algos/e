@@ -1,6 +1,51 @@
- "reference": {
-        "base_results_file_path": "results/pso/reference/",
-        "swarm_size": 20, 
+"csfla reference": {
+        "base_results_file_path": "results/csfla/reference/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "extreme niching cheap": {
+        "base_results_file_path": "results/csfla/enc/",
+        "n_frogs": 50,
+        "n_sm_frogs": 10,
+        "n_memeplex": 20,
+        "max_generations": 40,
+        "max_sub_generations": 100
+    },
+    "extreme niching expensive": {
+        "base_results_file_path": "results/csfla/ene/",
+        "n_frogs": 100,
+        "n_sm_frogs": 10,
+        "n_memeplex": 20,
+        "max_generations": 100,
+        "max_sub_generations": 100
+    },
+    "global cheap": {
+        "base_results_file_path": "results/csfla/gc/",
+        "n_frogs": 50,
+        "n_sm_frogs": 3,
+        "n_memeplex": 3,
+        "max_generations": 40,
+        "max_sub_generations": 20
+    },
+    "global expensive": {
+        "base_results_file_path": "results/csfla/ge/",
+        "n_frogs": 100,
+        "n_sm_frogs": 3,
+        "n_memeplex": 3,
+        "max_generations": 100,
+        "max_sub_generations": 20
+    }
+
+
+
+    // PSO PARAMS
+    ,
+    "small swarm size": {
+        "base_results_file_path": "results/pso/sss/",
+        "swarm_size": 10, 
         "v_max": 100.0,
         "w_inertia": 0.55,
         "w_memory": 0.55,
@@ -10,51 +55,489 @@
         "neighbourhood": 0,
         "max_iter": 5
     },
-    "exploratory cheap": {
-        "base_results_file_path": "results/pso/explorecheap/",
-        "swarm_size": 10, 
+    "medium high swarm size": {
+        "base_results_file_path": "results/pso/mhss/",
+        "swarm_size": 40, 
         "v_max": 100.0,
-        "w_inertia": 0.95,
+        "w_inertia": 0.55,
         "w_memory": 0.55,
-        "w_neigh": 0.05,
-        "k": 3,
-        "vel_conv_threshold": 0.01,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
         "neighbourhood": 0,
-        "max_iter": 3
+        "max_iter": 5
     },
-    "exploratory expensive": {
-        "base_results_file_path": "results/pso/exploreexp/",
+    "high swarm size": {
+        "base_results_file_path": "results/pso/hss/",
         "swarm_size": 80, 
         "v_max": 100.0,
-        "w_inertia": 0.95,
+        "w_inertia": 0.55,
         "w_memory": 0.55,
-        "w_neigh": 0.05,
-        "k": 3,
-        "vel_conv_threshold": 0.000001,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
         "neighbourhood": 0,
-        "max_iter": 3
+        "max_iter": 5
     },
-    "exploitatory cheap": {
-        "base_results_file_path": "results/pso/exploitcheap/",
+    "low max velocity": {
+        "base_results_file_path": "results/pso/lmv/",
+        "swarm_size": 10, 
+        "v_max": 10.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium max velocity": {
+        "base_results_file_path": "results/pso/mmv/",
+        "swarm_size": 10, 
+        "v_max": 50.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "high max velocity": {
+        "base_results_file_path": "results/pso/hmv/",
         "swarm_size": 10, 
         "v_max": 200.0,
         "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "lowest inertia weight": {
+        "base_results_file_path": "results/pso/lliw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.05,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "low inertia weight": {
+        "base_results_file_path": "results/pso/liw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.25,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium high inertia weight": {
+        "base_results_file_path": "results/pso/mhiw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.75,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "high inertia weight": {
+        "base_results_file_path": "results/pso/hiw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.95,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "lowest memory weight": {
+        "base_results_file_path": "results/pso/llmw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
         "w_memory": 0.05,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "low memory weight": {
+        "base_results_file_path": "results/pso/lmw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.25,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium high memory weight": {
+        "base_results_file_path": "results/pso/mhmw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.75,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "high memory weight": {
+        "base_results_file_path": "results/pso/hmw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.95,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "lowest neighbour weight": {
+        "base_results_file_path": "results/pso/llnw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.05,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "low neighbour weight": {
+        "base_results_file_path": "results/pso/lnw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.25,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium high neighbour weight": {
+        "base_results_file_path": "results/pso/mhnw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.75,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "high neighbour weight": {
+        "base_results_file_path": "results/pso/hnw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
         "w_neigh": 0.95,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "lowest k": {
+        "base_results_file_path": "results/pso/llk/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 1,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "low k": {
+        "base_results_file_path": "results/pso/lk/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 3,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium k": {
+        "base_results_file_path": "results/pso/mk/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 10,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "high k": {
+        "base_results_file_path": "results/pso/hk/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 15,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "max k": {
+        "base_results_file_path": "results/pso/hhk/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
         "k": 20,
         "vel_conv_threshold": 0.001,
         "neighbourhood": 0,
-        "max_iter": 10
+        "max_iter": 5
     },
-    "exploitatory expensive": {
-        "base_results_file_path": "results/pso/exploitexp/",
-        "swarm_size": 80, 
-        "v_max": 200.0,
+    "lowest velocity convergence threshold": {
+        "base_results_file_path": "results/pso/llvct/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
         "w_inertia": 0.55,
-        "w_memory": 0.05,
-        "w_neigh": 0.95,
-        "k": 20,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
         "vel_conv_threshold": 0.000001,
         "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "low velocity convergence threshold": {
+        "base_results_file_path": "results/pso/lvct/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.00005,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium velocity convergence threshold": {
+        "base_results_file_path": "results/pso/mvct/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.0005,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "high velocity convergence threshold": {
+        "base_results_file_path": "results/pso/hvct/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.01,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "lowest max iteration": {
+        "base_results_file_path": "results/pso/llmi/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 1
+    },
+    "low max iteration": {
+        "base_results_file_path": "results/pso/lmi/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 3
+    },
+    "medium max iteration": {
+        "base_results_file_path": "results/pso/mmi/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 7
+    },
+    "high max iteration": {
+        "base_results_file_path": "results/pso/hmi/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
         "max_iter": 10
+    }
+
+
+
+
+    CSFLA PARAMS,
+    
+    "low n frogs": {
+        "base_results_file_path": "results/csfla/lnf/",
+        "n_frogs": 10,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "medium n frogs": {
+        "base_results_file_path": "results/csfla/mnf/",
+        "n_frogs": 30,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "high n frogs": {
+        "base_results_file_path": "results/csfla/hnf/",
+        "n_frogs": 50,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "low n memeplexes": {
+        "base_results_file_path": "results/csfla/lnm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 2,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "medium n memeplexes": {
+        "base_results_file_path": "results/csfla/mnm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 3,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "high n memeplexes": {
+        "base_results_file_path": "results/csfla/hnm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 30,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "low n sm frogs": {
+        "base_results_file_path": "results/csfla/lnsm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 2,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "medium n sm frogs": {
+        "base_results_file_path": "results/csfla/mnsm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 3,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "high n sm frogs": {
+        "base_results_file_path": "results/csfla/hnsm/",
+        "n_frogs": 20,
+        "n_sm_frogs": 4,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 40
+    },
+    "low generations": {
+        "base_results_file_path": "results/csfla/lg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 5,
+        "max_sub_generations": 40
+    },
+    "medium generations": {
+        "base_results_file_path": "results/csfla/mg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 20,
+        "max_sub_generations": 40
+    },
+    "high generations": {
+        "base_results_file_path": "results/csfla/hg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 100,
+        "max_sub_generations": 40
+    },
+    "low sub generations": {
+        "base_results_file_path": "results/csfla/lsg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 10
+    },
+    "medium sub generations": {
+        "base_results_file_path": "results/csfla/msg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 20
+    },
+    "high sub generations": {
+        "base_results_file_path": "results/csfla/hsg/",
+        "n_frogs": 20,
+        "n_sm_frogs": 5,
+        "n_memeplex": 4,
+        "max_generations": 40,
+        "max_sub_generations": 100
     }

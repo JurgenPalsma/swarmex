@@ -1,5 +1,5 @@
 {
-    "reference": {
+    "csfla reference": {
         "base_results_file_path": "results/pso/reference/",
         "swarm_size": 20, 
         "v_max": 100.0,

@@ -1,5 +1,0 @@
-0.010%: {length =   508, meanRatio[up] = 0.78, meanRatio[down] = 0.67}
-0.013%: {length =   428, meanRatio[up] = 0.97, meanRatio[down] = 0.73}
-0.015%: {length =   386, meanRatio[up] = 1.01, meanRatio[down] = 0.87}
-0.018%: {length =   332, meanRatio[up] = 1.20, meanRatio[down] = 0.98}
-0.020%: {length =   302, meanRatio[up] = 1.15, meanRatio[down] = 0.93}

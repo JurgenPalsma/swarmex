@@ -1,2 +1,0 @@
-file	number of runs	avg wealth	avg return	avg value	avg profit	avg mdd	avg transactions	avg short transactions
-results/pso/explorecheap/data/fx-spot_EUR_GBP_10min_201404.txt:fx-spot_EUR_GBP_10min_201404:0:20:21:29/	10	499999.302160	 -0.000140	 -0.000311	 -0.697840	  0.000858	181	0

@@ -1,5 +1,5 @@
 {
-    "reference": {
+    "csfla reference": {
         "base_results_file_path": "results/csfla/reference/",
         "n_frogs": 20,
         "n_sm_frogs": 5,
