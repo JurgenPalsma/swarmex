@@ -6,6 +6,9 @@ __pycache__/
 # Statistical tests
 tests/*
 
+# Results
+results/*
+
 # C extensions
 *.so
 
