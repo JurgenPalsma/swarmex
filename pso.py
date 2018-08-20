@@ -1,13 +1,17 @@
+import time
+import json
+import logging
+import pickle
+import json
+from multiprocessing import Process
+from enum import Enum, unique
+from timeit import Timer
+
 from optimizer import AOptimizer
 from particle import Particle
 from fitness import AFitnessFunction, Fitness
 from individual import Individual
-from enum import Enum, unique
-import time
-import json
-import logging
-from tools import setup_logging, calculate_average_fitness
-import pickle
+from tools import setup_logging, calculate_average_fitness, log_time
 
 @unique
 class Neighbourhood(Enum):
@@ -16,7 +20,7 @@ class Neighbourhood(Enum):
 
 class PSO(AOptimizer):
     """
-    PSO algorithm encapsulation.
+        PSO algorithm encapsulation.
     """
     def __init__(self,
                 swarm_size: int = 10,
@@ -48,14 +52,14 @@ class PSO(AOptimizer):
 
     def optimize(self, ff: AFitnessFunction) -> Particle:
         """
-        Takes an AFitnessFunction abstract fitness function ff and returns an optimum
+            Takes an AFitnessFunction abstract fitness function ff and returns an optimum
         """
         # Initialize swarm
         self.__populate(ff)
         self.ff = ff
         self.iteration = 0
 
-        #Loop
+        # Loop
         while (not self.__converged()):
             diff_in_vs = []
             for p in self.swarm:
@@ -70,11 +74,15 @@ class PSO(AOptimizer):
                     if (ik >= self.k):
                         self.converged = True
                         break
-                    
+        # Sort swarm to get best particle            
         self.swarm.sort(key=lambda x: x.current_fit.ret, reverse=True)
+
         return self.swarm[0]
 
     def __populate(self, ff: AFitnessFunction):
+        """
+            Instantiate swarm of random particles given the set of constraints
+        """
         self.swarm = [  Particle(function=ff, v_max=3,
                         constraints={'quantity': {'min': 0, 'max': 100},
                         'b_start': {'min': 0.0, 'max': 1.0},
@@ -95,8 +103,8 @@ class PSO(AOptimizer):
 
     def __min_vel(self, d):
         """
-        Returns true if we reach the minimum velocity change in a particle
-        We ignore the velocities which tend to not reach minimum change
+            Returns true if we reach the minimum velocity change in a particle
+            We ignore the velocities which tend to not reach minimum change
         """
         d = d.drop('quantity', axis=0)
         d = d.drop('q_short')
@@ -104,16 +112,14 @@ class PSO(AOptimizer):
 
     def __find_best_neighbour(self, p: Particle):
         """
-        For now, just returns global neighbourhood
+            Just returns global neighbourhood
         """
         bestp = self.swarm[0]
         for p in self.swarm:
             bestf = self.ff.fitness(Individual.factory("Coordinate", bestp.n_thresholds, bestp.p))
             while (bestf is None):
                 bestf = self.ff.fitness(Individual.factory("Coordinate", bestp.n_thresholds, bestp.p))
-                #time.sleep(1)
             currentf = self.ff.fitness(Individual.factory("Coordinate", p.n_thresholds, p.p))
-
             if (currentf.value > bestf.value):
                 bestp = p
         return bestp
@@ -198,3 +204,31 @@ def run_pso_from_config(ff, n_runs, config):
     vel_conv_threshold= config['vel_conv_threshold'],
     neighbourhood= config['neighbourhood'],
     max_iter= config['max_iter'])
+
+def run_multiple_pso(path, datafile, ff, cfg):
+    """
+        Runs multiple pso experiments when -p flag is passed.
+        Takes a path to list of configurations (json file) and executes each provided config on a different process
+    """
+    logger = logging.getLogger(__name__)
+    if not os.path.exists(path):
+        logger.error("%s: pso config file not found" % path)
+        quit()
+    with open(path) as cfg_file:  
+        psocfg = json.load(cfg_file)
+
+    experiments = {}
+
+    for p in psocfg:
+        psocfg[p]['results_file_path'] = psocfg[p]['base_results_file_path'] + datafile + '/'
+        if not os.path.exists(psocfg[p]['results_file_path']):
+            logger.info('PSO: Running configuration: %s, results in: %s' % (p, psocfg[p]['results_file_path']))
+            pso = Process(target=run_pso_from_config, args=(ff, cfg['algos']['n_runs'], psocfg[p]))
+            pso.start()
+            experiments[p] = pso
+        else:
+            print('PSO: skip config: %s: file already exists' % (p))
+
+    for e in experiments:
+        t = Timer(lambda: experiments[e].join())
+        log_time(t.timeit(number=1), datafile, e)

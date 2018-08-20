@@ -1,7 +1,15 @@
-class Fitness(dict):
+from abc import ABCMeta, abstractmethod
+
+class AFitness:
+    """ 
+        Encapsulate an optimization algorithm
+    """
+    __metaclass__ = ABCMeta
+    pass
+
+class Fitness(AFitness, dict):
     """ 
         Struct which has all fitness value variables that DC java strategy returns.
-        TODO: define all params
     """
     def __init__(
                 self,
@@ -31,17 +39,17 @@ class Fitness(dict):
         return "%10.6f\t%10.6f\t%10.6f\t%10.6f\t%10.6f\t%d\t%d\n" % (self.wealth, self.ret, self.value, self.realised_profit, self.mdd, self.no_of_transactions, self.no_of_short_selling_transactions)
 
 from abc import ABCMeta, abstractmethod
-from individual import Individual
+from individual import AIndividual
 
 class AFitnessFunction:
     """
-    Encapsulates a function we want to optimize
+        Encapsulates a function we want to optimize
     """
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def fitness(self, individual: Individual) -> Fitness:
+    def fitness(self, individual: AIndividual) -> AFitness:
         """
-        Fitness function that returns a Fitness object
+            Fitness function that returns a Fitness object
         """
         pass

@@ -1,0 +1,122 @@
+{
+    "medium high swarm size 1": {
+        "base_results_file_path": "results/pso/mhss1/",
+        "swarm_size": 40, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 4,
+        "vel_conv_threshold": 0.0001,
+        "neighbourhood": 0,
+        "max_iter": 3
+    },
+    "medium high swarm size 2": {
+        "base_results_file_path": "results/pso/mhss2/",
+        "swarm_size": 40, 
+        "v_max": 100.0,
+        "w_inertia": 0.75,
+        "w_memory": 0.35,
+        "w_neigh": 0.55,
+        "k": 4,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium high swarm size 3": {
+        "base_results_file_path": "results/pso/mhss3/",
+        "swarm_size": 50, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium high swarm size 4": {
+        "base_results_file_path": "results/pso/mhss4/",
+        "swarm_size": 30, 
+        "v_max": 80.0,
+        "w_inertia": 0.45,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "exploratory 1": {
+        "base_results_file_path": "results/pso/exploratory1/",
+        "swarm_size": 50, 
+        "v_max": 120.0,
+        "w_inertia": 0.95,
+        "w_memory": 0.55,
+        "w_neigh": 0.05,
+        "k": 6,
+        "vel_conv_threshold": 0.00005,
+        "neighbourhood": 0,
+        "max_iter": 7
+    },
+    "exploratory 2": {
+        "base_results_file_path": "results/pso/exploratory2/",
+        "swarm_size": 50, 
+        "v_max": 120.0,
+        "w_inertia": 0.95,
+        "w_memory": 0.55,
+        "w_neigh": 0.25,
+        "k": 6,
+        "vel_conv_threshold": 0.0001,
+        "neighbourhood": 0,
+        "max_iter": 7
+    },
+    "exploratory 3": {
+        "base_results_file_path": "results/pso/exploratory3/",
+        "swarm_size": 50, 
+        "v_max": 120.0,
+        "w_inertia": 0.95,
+        "w_memory": 0.55,
+        "w_neigh": 0.05,
+        "k": 6,
+        "vel_conv_threshold": 0.00005,
+        "neighbourhood": 0,
+        "max_iter": 7
+    },
+    "exploratory 4": {
+        "base_results_file_path": "results/pso/exploratory4/",
+        "swarm_size": 50, 
+        "v_max": 150.0,
+        "w_inertia": 0.85,
+        "w_memory": 0.45,
+        "w_neigh": 0.05,
+        "k": 5,
+        "vel_conv_threshold": 0.00005,
+        "neighbourhood": 0,
+        "max_iter": 7
+    },
+    "exploratory 5": {
+        "base_results_file_path": "results/pso/exploratory 5/",
+        "swarm_size": 40, 
+        "v_max": 100.0,
+        "w_inertia": 0.80,
+        "w_memory": 0.65,
+        "w_neigh": 0.25,
+        "k": 6,
+        "vel_conv_threshold": 0.0005,
+        "neighbourhood": 0,
+        "max_iter": 7
+    },
+    "exploratory 6": {
+        "base_results_file_path": "results/pso/exploratory6/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.95,
+        "w_memory": 0.55,
+        "w_neigh": 0.05,
+        "k": 3,
+        "vel_conv_threshold": 0.00005,
+        "neighbourhood": 0,
+        "max_iter": 7
+    }
+}

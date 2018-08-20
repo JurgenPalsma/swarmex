@@ -1,0 +1,38 @@
+{
+    "rush": {
+        "base_results_file_path": "results/pso/rush/",
+        "swarm_size": 40, 
+        "v_max": 200.0,
+        "w_inertia": 0.75,
+        "w_memory": 0.55,
+        "w_neigh": 0.95,
+        "k": 10,
+        "vel_conv_threshold": 0.0001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "exploratory": {
+        "base_results_file_path": "results/pso/exploratory/",
+        "swarm_size": 40, 
+        "v_max": 100.0,
+        "w_inertia": 0.95,
+        "w_memory": 0.55,
+        "w_neigh": 0.05,
+        "k": 6,
+        "vel_conv_threshold": 0.00005,
+        "neighbourhood": 0,
+        "max_iter": 7
+    },
+    "exploitatory": {
+        "base_results_file_path": "results/pso/exploitatory/",
+        "swarm_size": 40, 
+        "v_max": 200.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.05,
+        "w_neigh": 0.95,
+        "k": 20,
+        "vel_conv_threshold": 0.00005,
+        "neighbourhood": 0,
+        "max_iter": 7
+    }
+}

@@ -3,7 +3,7 @@ from fitness import AFitnessFunction, Fitness
 
 class AOptimizer:
     """ 
-    Encapsulate an optimization algorithm
+        Encapsulate an optimization algorithm
     """
     __metaclass__ = ABCMeta
 

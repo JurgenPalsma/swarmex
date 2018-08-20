@@ -54,7 +54,7 @@ class Frog():
             Assign a fitness to the frog's performance on the test data
         """
         self.tf = self.ff.testFitness(Individual.factory("Coordinate", self.n_thresholds, self.p))
-        print("Frog generated fitness: %s " % self.tf)
+        #("Frog generated fitness: %s " % self.tf)
 
     def log(self, path, iteration=0):
         if (not self.tf):
@@ -70,10 +70,6 @@ class Frog():
     def __repr__(self):
         return self.p.to_string()
 
-    """
-    TODO (eventually):
-        Make sure operator overloading is safe (eg: same constraints, same number of thresholds)
-    """
     def __add__(self, right): 
         left = Frog(function=self.ff, constraints=self.constraints, n_thresholds=self.n_thresholds)
         left.p = self.p + right.p

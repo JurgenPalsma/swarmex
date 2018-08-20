@@ -1,0 +1,10 @@
+{
+    "csfla": {
+        "base_results_file_path": "results/csfla/csfla/",
+        "n_frogs": 200,
+        "n_sm_frogs": 20,
+        "n_memeplex": 40,
+        "max_generations": 3,
+        "max_sub_generations": 40
+    }
+}

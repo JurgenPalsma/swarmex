@@ -1,7 +1,19 @@
 {
-    "csfla reference": {
+    "pso reference": {
         "base_results_file_path": "results/pso/reference/",
         "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "tiny swarm size": {
+        "base_results_file_path": "results/pso/tss/",
+        "swarm_size": 5, 
         "v_max": 100.0,
         "w_inertia": 0.55,
         "w_memory": 0.55,
@@ -71,6 +83,18 @@
         "neighbourhood": 0,
         "max_iter": 5
     },
+    "medium high max velocity": {
+        "base_results_file_path": "results/pso/mhmv/",
+        "swarm_size": 10, 
+        "v_max": 1000.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
     "high max velocity": {
         "base_results_file_path": "results/pso/hmv/",
         "swarm_size": 10, 
@@ -100,6 +124,18 @@
         "swarm_size": 20, 
         "v_max": 100.0,
         "w_inertia": 0.25,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium low inertia weight": {
+        "base_results_file_path": "results/pso/mliw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.45,
         "w_memory": 0.55,
         "w_neigh": 0.55,
         "k": 5,
@@ -155,6 +191,18 @@
         "neighbourhood": 0,
         "max_iter": 5
     },
+    "medium low memory weight": {
+        "base_results_file_path": "results/pso/mlmmw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.45,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
     "medium high memory weight": {
         "base_results_file_path": "results/pso/mhmw/",
         "swarm_size": 20, 
@@ -198,6 +246,18 @@
         "w_inertia": 0.55,
         "w_memory": 0.55,
         "w_neigh": 0.25,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 5
+    },
+    "medium low neighbour weight": {
+        "base_results_file_path": "results/pso/mllnw/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.45,
         "k": 5,
         "vel_conv_threshold": 0.001,
         "neighbourhood": 0,
@@ -382,5 +442,17 @@
         "vel_conv_threshold": 0.001,
         "neighbourhood": 0,
         "max_iter": 10
+    },
+    "max max iteration": {
+        "base_results_file_path": "results/pso/mmmi/",
+        "swarm_size": 20, 
+        "v_max": 100.0,
+        "w_inertia": 0.55,
+        "w_memory": 0.55,
+        "w_neigh": 0.55,
+        "k": 5,
+        "vel_conv_threshold": 0.001,
+        "neighbourhood": 0,
+        "max_iter": 30
     }
 }

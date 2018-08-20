@@ -1,0 +1,66 @@
+{
+    "extreme niching expensive lower gen": {
+        "base_results_file_path": "results/csfla/enellw/",
+        "n_frogs": 100,
+        "n_sm_frogs": 10,
+        "n_memeplex": 20,
+        "max_generations": 2,
+        "max_sub_generations": 40
+    },
+    "extreme niching expensive med gen 1": {
+        "base_results_file_path": "results/csfla/ene0/",
+        "n_frogs": 100,
+        "n_sm_frogs": 10,
+        "n_memeplex": 20,
+        "max_generations": 5,
+        "max_sub_generations": 40
+    },
+    "extreme niching 1": {
+        "base_results_file_path": "results/csfla/ene1/",
+        "n_frogs": 60,
+        "n_sm_frogs": 6,
+        "n_memeplex": 20,
+        "max_generations": 3,
+        "max_sub_generations": 40
+    },
+    "extreme niching 2": {
+        "base_results_file_path": "results/csfla/ene2/",
+        "n_frogs": 200,
+        "n_sm_frogs": 20,
+        "n_memeplex": 40,
+        "max_generations": 3,
+        "max_sub_generations": 40
+    },
+    "extreme niching 3": {
+        "base_results_file_path": "results/csfla/ene3/",
+        "n_frogs": 100,
+        "n_sm_frogs": 10,
+        "n_memeplex": 20,
+        "max_generations": 3,
+        "max_sub_generations": 80
+    },
+    "extreme niching expensive 4": {
+        "base_results_file_path": "results/csfla/ene4/",
+        "n_frogs": 80,
+        "n_sm_frogs": 8,
+        "n_memeplex": 16,
+        "max_generations": 2,
+        "max_sub_generations": 40
+    },
+    "extreme niching expensive 5": {
+        "base_results_file_path": "results/csfla/ene5/",
+        "n_frogs": 100,
+        "n_sm_frogs": 7,
+        "n_memeplex": 20,
+        "max_generations": 3,
+        "max_sub_generations": 40
+    },
+    "extreme niching expensive l6": {
+        "base_results_file_path": "results/csfla/ene6/",
+        "n_frogs": 100,
+        "n_sm_frogs": 20,
+        "n_memeplex": 10,
+        "max_generations": 3,
+        "max_sub_generations": 40
+    }
+}

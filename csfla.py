@@ -1,11 +1,17 @@
-from optimizer import AOptimizer
-from frog import Frog
-import numpy as np 
+# 3rd party imports
+import numpy as np
 import pandas as pd
-from tools import setup_logging, calculate_average_fitness
 import logging
 import os
 import pickle
+import json
+from multiprocessing import Process
+from timeit import Timer
+
+# Custom imports
+from optimizer import AOptimizer
+from frog import Frog
+from tools import setup_logging, calculate_average_fitness, log_time
 
 class CSFLA(AOptimizer):
     """
@@ -54,15 +60,16 @@ class CSFLA(AOptimizer):
 
 
     def __evolve(self, sub):
-        xb = sub[0]
-        xw = sub[-1]
+        xb = sub[0] # Best frog in sub
+        xw = sub[-1] # Worst frog in sub
         xs = self.pop[0]
-        r = np.random.uniform(0, 1)
+        r = np.random.uniform(0, 1) 
 
         # Try to learn from local best
         xt = xb - xw
         xt.p = xw.p + r * (xt.p)
         if (xt.current_fit.ret > xw.current_fit.ret):
+            # If we've improved we keep the improved frog
             sub[-1] = xt
             return sub
 
@@ -71,9 +78,9 @@ class CSFLA(AOptimizer):
             xt = xs - xw
             xt.p = xw.p + r * (xt.p)
             if (xt.current_fit.ret > xw.current_fit.ret):
+                # If we've improved we keep the improved frog
                 sub[-1] = xt
                 return sub
-            
             else:
                 # Randomize the worst frog in the submemeplex
                 sub[-1] = Frog(self.ff, self.constraints)
@@ -111,26 +118,21 @@ def run_csfla(fitness_function, n_try_runs, results_file_path, n, m, sn, Gm = 10
     logger = logging.getLogger(__name__)
     open(results_file_path + 'testfitness.txt', 'w').close()
     open(results_file_path + 'trainfitness.txt', 'w').close()
-
     with open(results_file_path + 'testfitness.txt', 'a') as f:
         f.write("run\twealth\treturn\tvalue\tprofit\tmdd\ttransactions\tshort transactions\n")
     with open(results_file_path + 'trainfitness.txt', 'a') as f:
         f.write("run\twealth\treturn\tvalue\tprofit\tmdd\ttransactions\tshort transactions\n")
-
-    # Set the fitness function
-    fitness_function = fitness_function
-
-    # Init variables
+    
+    # Main loop
     n_runs = 0
     tfitnesses = {}
-
-    # Main loop
     for i in range(0, n_try_runs):
 
+        # Init algorithm
         csfla = CSFLA(n=n, m=m, sn=sn, Gm=Gm, Gs=Gs)
         frog = csfla.optimize(fitness_function)
         
-        # Test the particle and add it to list if it's valid
+        # Test the frog and add it to list if it's valid
         frog.test()
         if (frog.tf.value < -100) or (frog.tf.mdd == 0):
             logger.info("Run %d: frog not taken into account in average results: fitness is invalid" % i)
@@ -138,7 +140,7 @@ def run_csfla(fitness_function, n_try_runs, results_file_path, n, m, sn, Gm = 10
             tfitnesses[i] = frog.tf
             n_runs += 1
 
-        # Log results
+        # Log and pickle results
         frog.log(iteration=i, path=results_file_path)
         pickle.dump(frog.p, open(results_file_path+"/pickles/frog_run_"+str(i)+".pickle", "wb" ) )
 
@@ -151,10 +153,33 @@ def run_csfla_from_config(ff, n_runs, config):
     if not os.path.exists(config['results_file_path']+'pickles/'):
         os.makedirs(config['results_file_path']+'pickles/')
     
-    # Run CSFLA with config in providef file
+    # Run CSFLA with config in provided file
     run_csfla(ff, n_runs, config['results_file_path'],
     n=config['n_frogs'],
     m=config['n_sm_frogs'],
     sn=config['n_memeplex'],
     Gm=config['max_generations'],
     Gs=config['max_sub_generations'])
+
+def run_multiple_csfla(path, datafile, ff, cfg):
+    """
+        Runs multiple csfla experiments when -f flag is passed.
+        Takes a path to list of configurations (json file) and executes each provided config on a different process
+    """
+    if not os.path.exists(path):
+        logger = logging.getLogger(__name__)
+        logger.error("%s: csfla config file not found" % path)
+        quit()
+    with open(path) as cfg_file:  
+        csflacfg = json.load(cfg_file)
+
+    experiments = {}
+    for p in csflacfg:
+        csflacfg[p]['results_file_path'] = csflacfg[p]['base_results_file_path'] + datafile + '/'
+        csfla = Process(target=run_csfla_from_config, args=(ff, cfg['algos']['n_runs'], csflacfg[p]))
+        csfla.start()
+        experiments[p] = csfla
+
+    for e in experiments:
+        t = Timer(lambda: experiments[e].join())
+        log_time(t.timeit(number=1), datafile, e)

@@ -9,6 +9,8 @@ tests/*
 # Results
 results/*
 
+swarmex/*
+
 # C extensions
 *.so
 

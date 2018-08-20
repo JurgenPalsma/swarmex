@@ -1,7 +1,12 @@
 import numpy as np 
 import pandas as pd 
+from abc import ABCMeta, abstractmethod
 
-class Individual:
+class AIndividual:
+    __metaclass__ = ABCMeta
+    pass
+
+class Individual(AIndividual):
     def factory(type, threshold_number, indiv: pd.DataFrame):
 
         if (type == "Coordinate"):
@@ -28,17 +33,7 @@ class IndividualFromCoord(Individual):
         for i in range(0, threshold_number):
             w.append(indiv.loc['t'+str(i + 1)]['Coordinate'])
         self.threshold_weights = w
-
-    """
-    def __repr__(self):
-        s = ("<Individual::IndividualFromCoord: quantity: %i, b_start: %f, b_end: %f, b_price: %f, q_short: %i, thresholds: {" % (self.quantity, self.b_start, self.b_end, self.b_price, self.q_short))   
-        c = 0
-        for i in self.threshold_weights:
-            s += ('t%i: %f, ' % (c, i))
-            c += 1
-        s += "}"
-        return s
-    """
+        
     def __repr__(self):
         s = ("double[] indiv = {%i, %f, %f, %f, %f," % (self.quantity, self.b_start, self.b_end, self.q_short, self.b_end))
         for i in self.threshold_weights:

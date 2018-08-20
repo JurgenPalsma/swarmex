@@ -10,8 +10,8 @@ import time
 
 class Particle:
     """
-    Candidate solution in the swarm
-    Parameters:
+        Candidate solution in the swarm
+        Parameters:
             function: the fitness function you want to optimize
             constraints: list of min & max values the parameters can take on the search space
     """
@@ -103,10 +103,10 @@ class Particle:
 
     def update_velocity(self, neighbour):
         """
-        Updates the particle's velocity and moves it by one iteration
-        self.velocity = (w_inertia * v) + (w_mem * (histpos - pos) + (wg * (neihg - pos)))
-        self.pos = self.pos + self.vel
-        returns amount of change in velocity
+            Updates the particle's velocity and moves it by one iteration
+            self.velocity = (w_inertia * v) + (w_mem * (histpos - pos) + (wg * (neihg - pos)))
+            self.pos = self.pos + self.vel
+            returns amount of change in velocity
         """
         self.p['Neighbour'] = neighbour.p['Coordinate']
         # Switch to update velocity 
@@ -140,11 +140,12 @@ class Particle:
         self.p['Velocity'] = self.p.apply(updatev, axis=1)
         self.__clampV()
         self.p['Coordinate'] = self.p.apply(move, axis=1)
-        self.clampPos()
+        self.__clampPos()
+
         # Update fitness
         self.current_fit = self.ff.fitness(Individual.factory("Coordinate", self.n_thresholds, self.p))
 
-        # Try to fix this
+        # Reset particle while its fitness is not valid
         while (self.current_fit.value == 0):
             self.__reset()
 
@@ -159,7 +160,9 @@ class Particle:
         return diff_in_v
 
     def __clampV(self):
-
+        """
+            Clamps the velocity of the particle
+        """
         def clamp(row):
             if row.name == "quantity":  
                 return row['Velocity']
@@ -169,10 +172,12 @@ class Particle:
                 return -self.v_max
             else:
                 return row['Velocity']
-
         self.p['Velocity'] = self.p.apply(clamp, axis=1)
 
-    def clampPos(self):
+    def __clampPos(self):
+        """
+            Clamps the position of the particle if it's out of the constrained search space
+        """
 
         def maxOf(p):
             return self.constraints[p]['max']
@@ -208,4 +213,3 @@ class Particle:
             Assign a fitness to the particle's performance on the test data
         """
         self.tf = self.ff.testFitness(Individual.factory("Coordinate", self.n_thresholds, self.p))
-        print("Particle generated fitness: %s " % self.tf)
