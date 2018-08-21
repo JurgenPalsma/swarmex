@@ -166,8 +166,8 @@ def run_multiple_csfla(path, datafile, ff, cfg):
         Runs multiple csfla experiments when -f flag is passed.
         Takes a path to list of configurations (json file) and executes each provided config on a different process
     """
+    logger = logging.getLogger(__name__)
     if not os.path.exists(path):
-        logger = logging.getLogger(__name__)
         logger.error("%s: csfla config file not found" % path)
         quit()
     with open(path) as cfg_file:  
@@ -176,6 +176,7 @@ def run_multiple_csfla(path, datafile, ff, cfg):
     experiments = {}
     for p in csflacfg:
         csflacfg[p]['results_file_path'] = csflacfg[p]['base_results_file_path'] + datafile + '/'
+        logger.info('CSFLA: Running configuration: %s, results in: %s' % (p, csflacfg[p]['results_file_path']))
         csfla = Process(target=run_csfla_from_config, args=(ff, cfg['algos']['n_runs'], csflacfg[p]))
         csfla.start()
         experiments[p] = csfla
