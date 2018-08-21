@@ -15,44 +15,72 @@ To ensure robustness of my proposed algorithms, I test them with the same config
 
 
 # Contents
-    This repository contains:
-    1. Custom, from scratch implementations of the PSO and CSFLA algorithms, in the .py files in the root of the repository
-    2. 3 months of 10-min FOREX data on 3 currency pairs, in the data/ folder, used to train/test the algorithms
-    3. Configuration files, in the config/ folder
-    4. Analysis notebooks in the analysis/ folder that cover 
+This repository contains:
+   1. Custom, from scratch implementations of the PSO and CSFLA algorithms, in the `.py` files in the root of the repository
+   2. 3 months of 10-min FOREX data on 3 currency pairs, in the `data/` folder, used to train/test the algorithms
+   3. Configuration files, in the `config/` folder
+   4. Analysis notebooks in the `analysis/` folder that cover 
                                     - the algorithm parameter tuning process
                                     - trading strategy performance on the test data
-    5. Results of all the experimented and final strategies, in the results.zip file
-    6. Project documentation, including UML and meeting powerpoints, in the docs/ folder
+   5. Results of all the experimented and final strategies, in the `results.zip` file
+   6. Project documentation, including UML and meeting powerpoints, in the `docs/` folder
 
-## The experiment:
-    
-    Installing the program:
-    Recommended: 
-        - Install [[Anaconda CLI]](https://anaconda.org/)
-        - Install the required libraries:
-        conda create --name <env> --file <this file>
+# The experiment:
+## Installing required packages:
 
-    Setup libs
-    conda create --name <env> --file <this file>
-    or
+1. Recommended installation:
+   - Install [Anaconda CLI](https://anaconda.org/) , See [docs](https://conda.io/docs/user-guide/tasks/manage-environments.html)
+   - Install the required libraries:
+```
+# Make sure to replace <envname> with the name of your env
+conda create --name <envname> --file requirements.txt
+```
+On Windows, in your Anaconda Prompt, run `activate <envname>`
+
+On macOS and Linux, in your Terminal Window, run `source activate <envname>`
+
+OR Installation with pip (less recommended)
+   - Install the required libraries with [pip](https://pypi.org/project/pip/):
+```
     pip install requirements.txt
-    Simple run example
-    Umls and diagrams
-    
+```
+2. Install an [Ipython](https://jupyter.org/) notebook reader (provided by [Anaconda CLI](https://anaconda.org/) )
 
-### Training:
-    Run on training data
-    Or look in results file
-    parmas analysis notebooks
+## Running a short demo:
+If you simply to test out the system, you can run the simplified (and thus poorly performing!) algorithms on one month of data for one currency pair:
+```
+    python main.py -c ./config/demo.json
+```
 
-### Testing:
-    Run on test data
-    or look in results file
-    performance analysis notebooks
+## Running the full experiment (optional):
+The full experiment generates all the configurations results (51 PSO configurations, 41 CSFLA configurations) on test and training data. This can take up to several days if your machine has low computational power. 
 
+__Pre-computed results__ can be extracted from the given `results.zip` file:
+```
+    unzip results.zip
+```
 
+Otherwise, to run the full experiment:
 
+__On the training data__:
+```
+    python main.py -c ./config/training_config.json -p config/algos/pso_param_exp_configs.json -f config/algos/csfla_param_exp_configs.json -o
+    python main.py -c ./config/training_config.json -p config/algos/pso_configs.json -f config/algos/csfla_params_config_2.json -o
+    python main.py -c ./config/training_config.json -p config/algos/pso_configs_2.json -f config/algos/csfla_configs.json -o
+    python main.py -c ./config/training_config.json -p config/algos/pso_configs_3.json -o
+```
+
+__On the testing data__:
+```
+    python main.py -c ./config/testing_config.json -p config/algos/pso.json -f config/algos/csfla.json -g
+```
+
+## Analysing the results
+Make sure you have either extracted the provided results, or generated the training data.
+
+Then, run the Ipython notebooks in the `analysis/` folder.
+    - The `indepth_csfla_tuning.ipynb`, `indepth_pso_tuning.ipynb`, `preliminary_csfla_tuning.ipynb`, `preliminary_pso_tuning.ipynb` notebooks cover the parameter tuning experiments
+    - The `test_data_analysis.ipynb` notebooks cover the results of the algorithms on the test data
 
 
 ## References:
