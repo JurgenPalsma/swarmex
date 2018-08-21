@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+import matplotlib.pyplot as plt
 import pickle
 
 def get_config(file='../config/config.json'):
@@ -48,3 +49,28 @@ def get_monthly_ga_results(cfg):
         df = df.append(p)
     df.rename(columns={'noOfTransactions':'no_of_transactions', 'noOfShortSellingTransactions':'no_of_short_selling_transactions', 'return':'ret'}, inplace=True)
     return df
+
+def plot_configs(df):
+    plt.plot(df.loc['value'], label='fitness')
+    plt.plot(df.loc['mdd'])
+    plt.plot(df.loc['ret'], label='return')
+    plt.xticks(rotation=20)
+    plt.xlabel('Configurations', size=14)
+    plt.ylabel('Value', size=14)
+    plt.title("Average fitness value on test months for 4 currency pairs")
+    plt.legend()
+    plt.show()
+
+def plot_time(df):
+    plt.plot(df.loc['time'])
+    plt.xticks(rotation=20)
+    plt.xlabel('Configurations', size=14)
+    plt.ylabel('Execution time', size=14)
+    plt.title("Average exec time on test months for 4 currency pairs")
+    plt.legend()
+    plt.show()
+
+def get_algo_configurations(file):
+    with open(file) as cfg_file:  
+        c = json.load(cfg_file)
+    return pd.DataFrame(c)
