@@ -15,15 +15,29 @@ To ensure robustness of my proposed algorithms, I test them with the same config
 
 
 # Contents
+    This repository contains:
+    1. Custom, from scratch implementations of the PSO and CSFLA algorithms, in the .py files in the root of the repository
+    2. 3 months of 10-min FOREX data on 3 currency pairs, in the data/ folder, used to train/test the algorithms
+    3. Configuration files, in the config/ folder
+    4. Analysis notebooks in the analysis/ folder that cover 
+                                    - the algorithm parameter tuning process
+                                    - trading strategy performance on the test data
+    5. Results of all the experimented and final strategies, in the results.zip file
+    6. Project documentation, including UML and meeting powerpoints, in the docs/ folder
+
+## The experiment:
+    
+    Installing the program:
+    Recommended: 
+        - Install [[Anaconda CLI]](https://anaconda.org/)
+        - Install the required libraries:
+        conda create --name <env> --file <this file>
+
     Setup libs
     conda create --name <env> --file <this file>
     or
     pip install requirements.txt
     Simple run example
-
-
-## The experiment:
-    
     Umls and diagrams
     
 
