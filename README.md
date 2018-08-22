@@ -82,12 +82,24 @@ __Static notebooks__:
 To read the notebooks without making changes and having to get the data, you can open the `.html` files in the 
 `analysis/` folder.
 
+The `test_data_analysis.html` file presents an analysis of the results of the algorithms on the test 
+
+The `preliminary_pso_tuning_analysis.html` and `indepth_pso_tuning.html` files present parameter tuning analysis of the PSO.
+
+The `preliminary_csfla_tuning_analysis.html` and `indepth_csfla_tuning.html` files present parameter tuning analysis of the CSFLA.
+
 
 __To run the interactive notebooks__:
 
 Make sure you have either extracted the provided results, or generated the training data.
 
 Run the Ipython notebooks in the `analysis/` folder.
+
+The `test_data_analysis.ipynb` notebook presents an interactive analysis of the results of the algorithms on the test 
+
+The `preliminary_pso_tuning_analysis.ipynb` and `indepth_pso_tuning.ipynb` notebooks present interactive parameter tuning analysis of the PSO.
+
+The `preliminary_csfla_tuning_analysis.ipynb` and `indepth_csfla_tuning.ipynb` notebooks present interactive parameter tuning analysis of the CSFLA.
 
 
 ## References:
