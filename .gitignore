@@ -9,6 +9,8 @@ tests/*
 # Results
 results/*
 
+__MACOSX/*
+
 swarmex/*
 
 # C extensions
@@ -117,6 +119,4 @@ venv.bak/
 # VS code 
 .vscode/
 .vscode
-
-dc/
 
