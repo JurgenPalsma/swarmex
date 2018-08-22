@@ -17,13 +17,13 @@ To ensure robustness of my proposed algorithms, I test them with the same config
 # Contents
 This repository contains:
    1. Custom, from scratch implementations of the PSO and CSFLA algorithms, in the `.py` files in the root of the repository
-   2. 3 months of 10-min FOREX data on 3 currency pairs, in the `data/` folder, used to train/test the algorithms
-   3. Configuration files, in the `config/` folder
+   2. 12 months of 10-min FOREX data on 4 currency pairs, in the `data/` folder, used to train and test the algorithms
+   3. Configuration files, in the `config/` folder, which are used by the program to generate experiments
    4. Analysis notebooks in the `analysis/` folder that cover 
                                     - the algorithm parameter tuning process
-                                    - trading strategy performance on the test data
+                                    - analysis of the trading strategy performance on the test data
    5. Results of all the experimented and final strategies, in the `results.zip` file
-   6. Project documentation, including UML and meeting powerpoints, in the `docs/` folder
+   6. Project documentation, including UML class diagrams and meeting powerpoints, in the `docs/` folder
 
 # The experiment:
 ## Installing required packages:
