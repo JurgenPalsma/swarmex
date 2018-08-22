@@ -46,7 +46,7 @@ def get_monthly_ga_results(cfg):
         p['month'] = extract_month(f)
         p['currency'] = extract_currency(f)
         p.index = ['ga'+ ' ' + f]
-        df = df.append(p)
+        df = df.append(p,sort=False)
     df.rename(columns={'noOfTransactions':'no_of_transactions', 'noOfShortSellingTransactions':'no_of_short_selling_transactions', 'return':'ret'}, inplace=True)
     return df
 
