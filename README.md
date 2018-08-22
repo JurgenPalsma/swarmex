@@ -83,16 +83,11 @@ To read the notebooks without making changes and having to get the data, you can
 `analysis/` folder.
 
 
-
 __To run the interactive notebooks__:
 
 Make sure you have either extracted the provided results, or generated the training data.
 
 Run the Ipython notebooks in the `analysis/` folder.
-
-    - The `indepth_csfla_tuning.ipynb`, `indepth_pso_tuning.ipynb`, `preliminary_csfla_tuning.ipynb`, `preliminary_pso_tuning.ipynb` notebooks cover the parameter tuning experiments
-    
-    - The `test_data_analysis.ipynb` notebooks cover the results of the algorithms on the test data
 
 
 ## References:
