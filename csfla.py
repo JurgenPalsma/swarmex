@@ -176,7 +176,8 @@ def run_multiple_csfla(path, datafile, ff, cfg):
     experiments = {}
     for p in csflacfg:
         csflacfg[p]['results_file_path'] = csflacfg[p]['base_results_file_path'] + datafile + '/'
-        logger.info('CSFLA: Running configuration: %s, results in: %s' % (p, csflacfg[p]['results_file_path']))
+        logger.info('infCSFLA: Running configuration: %s, results in: %s' % (p, csflacfg[p]['results_file_path']))
+        print('CSFLA: Running configuration: %s, results in: %s' % (p, csflacfg[p]['results_file_path']))
         csfla = Process(target=run_csfla_from_config, args=(ff, cfg['algos']['n_runs'], csflacfg[p]))
         csfla.start()
         experiments[p] = csfla
